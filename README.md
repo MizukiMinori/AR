@@ -10,9 +10,9 @@ QRコードに埋め込むURL（完成形）
 GitHub Pages に配置するファイル構成
 
   /ar
- ├ index.html
- └ markers/
-     └ event01.patt
+  　├ index.html
+  　└ markers/
+  　　　└ event01.patt
 
 ④ 動作の流れ（確認）
 
