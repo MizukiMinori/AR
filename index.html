@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>AR Marker Viewer</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+  <!-- AR.js -->
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+  <style>
+    body { margin: 0; overflow: hidden; }
+  </style>
+</head>
+
+<body>
+<script>
+  const params = new URLSearchParams(location.search);
+  const imageUrl = params.get("img");
+  const markerName = params.get("marker") || "event01";
+
+  if (!imageUrl) {
+    alert("画像URLが指定されていません");
+  }
+</script>
+
+<a-scene
+  embedded
+  vr-mode-ui="enabled: false"
+  renderer="logarithmicDepthBuffer: true;"
+  arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+  <!-- マーカー -->
+  <a-marker
+    id="marker"
+    type="pattern"
+    url="">
+    <a-image
+      id="arImage"
+      position="0 0 0"
+      rotation="-90 0 0"
+      width="1"
+      height="1">
+    </a-image>
+  </a-marker>
+
+  <a-entity camera></a-entity>
+</a-scene>
+
+<script>
+  const marker = document.getElementById("marker");
+  const image = document.getElementById("arImage");
+
+  marker.setAttribute("url", `markers/${markerName}.patt`);
+  image.setAttribute("src", imageUrl);
+</script>
+
+</body>
+</html>
